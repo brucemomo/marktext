@@ -79,7 +79,12 @@ jobs:
         uses: GabrielBB/xvfb-action@v1
         with:
           run: yarn run test
-
+          
+      - name: yarn install
+        run: |
+          yarn add ts-node
+          yarn add typescript
+      
       - name: Build
         run: yarn build:bin
 
@@ -87,7 +92,11 @@ jobs:
     runs-on: windows-latest
     continue-on-error: false
     timeout-minutes: 45
-
+    set lang=zh-cn
+ 
+ mac or linux:
+    export lang=zh-cn
+   
     env:
       # MARKTEXT_IS_STABLE: 1
       MARKTEXT_EXIT_ON_ERROR: 1
