@@ -10,7 +10,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     continue-on-error: false
     timeout-minutes: 45
-
+    export lang=zh-cn
+    
     strategy:
       matrix:
         os: [macos-11, ubuntu-latest]
@@ -32,6 +33,11 @@ jobs:
           check-latest: true
           cache: yarn
           cache-dependency-path: yarn.lock
+        
+      - name: yarn install
+        run: yarn add ts-node
+        run: yarn add typescript
+        
 
       - name: Install build dependencies
         if: runner.os == 'Linux'
@@ -110,7 +116,8 @@ jobs:
     runs-on: windows-latest
     continue-on-error: false
     timeout-minutes: 45
-
+    set lang=zh-cn
+    
     env:
       MARKTEXT_IS_STABLE: 1
       MARKTEXT_EXIT_ON_ERROR: 1
